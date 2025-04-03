@@ -6,10 +6,10 @@ from app.database import Base
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, unique=True, nullable=False)
-    email = Column(String, unique=True, nullable=False)
-    password_hash = Column(String, nullable=False)
-    role = Column(String, default="user")
+    username = Column(String(255), nullable=False)  # ✅ Specify length
+    email = Column(String(255), unique=True, nullable=False)  # ✅ Specify length
+    password_hash = Column(String(255), nullable=False) 
+    role = Column(String(50), nullable=False, default="user")
 
     borrow_history = relationship("BorrowHistory", back_populates="user")
 
